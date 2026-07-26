@@ -22,3 +22,6 @@ void gdt_initialize(void)
     gdt_set_entry(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // data seg descriptor 0x92 bits
     gdt_flush((uint32_t)&gp);
 }
+// TEMP: sanity check, remove after confirming
+_Static_assert(sizeof(struct gdt_entry) == 8, "gdt_entry is not 8 bytes - packing failed");
+_Static_assert(sizeof(struct gdt_ptr) == 6, "gdt_ptr is not 6 bytes - packing failed");
