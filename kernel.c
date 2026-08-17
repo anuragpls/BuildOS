@@ -8,8 +8,9 @@ void kernel_main(void) {
     console_print("GDT working.\n");
     idt_initialize();
     console_print("IDT working.\n");
-    volatile int numerator = 1;
-    volatile int zero = 0;
-    volatile int x = numerator / zero;
+    //volatile int numerator = 1;
+    //volatile int zero = 0;
+    //olatile int x = numerator / zero;
+    asm volatile("ud2");
     for (;;);
 }

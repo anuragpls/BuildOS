@@ -17,7 +17,7 @@ struct idt_ptr
 struct registers
 {
     uint32_t edi, esi, ebp, esp_dummy, ebx, edx, ecx, eax;  // reversed pusha order
-    uint32_t int_no, err_code;                                // isr0's own pushes
+    uint32_t int_no, err_code;                                // cpu's own pushes
     uint32_t eip, cs, eflags;   //CPU auto pushes
 }__attribute__((packed));
 void idt_initialize (void);

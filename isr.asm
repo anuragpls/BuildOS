@@ -1,13 +1,59 @@
-global isr0
+%macro ISR_NOERRORCODE 1
+global isr%1
+isr%1 :
+ push 0
+ push %1
+ jmp isr_stub
+%endmacro
+
+%macro ISR_ERRORCODE 1
+global isr%1
+isr%1 :
+ push %1
+ jmp isr_stub
+%endmacro
+
+global isr_stub
 extern isr_handler
- isr0 :
-  push 0 ;
-  push 0 ;
-  pusha ;
-  push esp ;
-  call isr_handler
-  add esp, 4
-  popa
-  add esp, 8
-  iret
+isr_stub :
+ pusha
+ push esp
+ call isr_handler
+ add esp, 4
+ popa
+ add esp, 8
+ iret
+ISR_NOERRORCODE 0
+ISR_NOERRORCODE 1
+ISR_NOERRORCODE 2
+ISR_NOERRORCODE 3
+ISR_NOERRORCODE 4
+ISR_NOERRORCODE 5
+ISR_NOERRORCODE 6
+ISR_NOERRORCODE 7
+ISR_ERRORCODE   8
+ISR_NOERRORCODE 9
+ISR_ERRORCODE   10
+ISR_ERRORCODE   11
+ISR_ERRORCODE   12
+ISR_ERRORCODE   13
+ISR_ERRORCODE   14
+ISR_NOERRORCODE 15
+ISR_NOERRORCODE 16
+ISR_ERRORCODE   17
+ISR_NOERRORCODE 18
+ISR_NOERRORCODE 19
+ISR_NOERRORCODE 20
+ISR_NOERRORCODE 21
+ISR_NOERRORCODE 22
+ISR_NOERRORCODE 23
+ISR_NOERRORCODE 24
+ISR_NOERRORCODE 25
+ISR_NOERRORCODE 26
+ISR_NOERRORCODE 27
+ISR_NOERRORCODE 28
+ISR_NOERRORCODE 29
+ISR_NOERRORCODE 30
+ISR_NOERRORCODE 31
+
 
